@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Inke APNS Push Platform - DEBUG</title>
+</head>
+<body>
+
+{% if device_names %}
+    <h3>Device Names</h3>
+    <ul>
+    {% for name in device_names %}
+        <li>{{ name }}
+            <ul>
+                {% for token in device_info[name] %}
+                    <li>{{ token }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <h3>No Device Registered</h3>
+{% endif %}
+
+</body>
+</html>
