@@ -6,22 +6,48 @@
 </head>
 <body>
 
-{% if device_names %}
-    <h3>Device Names</h3>
-    <ul>
-    {% for name in device_names %}
-        <li>{{ name }}
+<form>
+<div style="width: 500px; float: left">
+
+        {% if device_names %}
+            <h3>Device Names</h3>
             <ul>
-                {% for token in device_info[name] %}
-                    <li>{{ token }}</li>
+                {% for name in device_names %}
+                    <li><input type="checkbox" value="{{ name }}"> {{ name }}
+                        <ul>
+                            {% for token in device_info[name] %}
+                                <li>{{ token }}</li>
+                            {% endfor %}
+                        </ul>
+                    </li>
                 {% endfor %}
             </ul>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <h3>No Device Registered</h3>
-{% endif %}
+        {% else %}
+            <h3>No Device Registered</h3>
+        {% endif %}
+</div>
+
+<div style="width: 550px; float: left">
+    <h3>Payload</h3>
+    <textarea rows="100" cols="70">
+{
+    "aps": {
+        "alert": {
+            "title": "aaaaaaa",
+            "subtitle": "developing",
+            "body": "bbbbbb"
+        },
+        "mutable-content": 1
+    },
+    "image_url": "http://wx4.sinaimg.cn/mw690/0069vjO6gy1fgpc7gfkzoj30sg0s9456.jpg"
+}
+    </textarea>
+</div>
+
+<div>
+    <input type="submit" name="submit" value="push">
+</div>
+</form>
 
 </body>
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, make_response
 from pyapns import configure, provision, notify
 
 app = Flask(__name__)
@@ -32,8 +32,9 @@ def send_device_info():
             tokens.add(device_token)
         device_info[device_name] = tokens
 
-    return index()
-    # return {'success':'1'}
+    resp = make_response('{"success": 1}')
+    resp.headers['Content-Type'] = "application/json"
+    return resp
 
 def send_apns():
     configure({'HOST': 'http://localhost:7077/'})
